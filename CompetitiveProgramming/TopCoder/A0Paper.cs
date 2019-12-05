@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TopCoder
+﻿namespace CompetitiveProgramming.TopCoder
 {
     public class A0Paper
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TopCoder
+namespace CompetitiveProgramming
 {
     public class Template
     {

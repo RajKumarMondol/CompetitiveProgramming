@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace TopCoder.Tests
+namespace CompetitiveProgramming.Tests
 {
     public class Template
     {

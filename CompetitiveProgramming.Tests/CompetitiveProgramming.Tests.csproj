@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TopCoder\TopCoder.csproj" />
+    <ProjectReference Include="..\CompetitiveProgramming\CompetitiveProgramming.csproj" />
   </ItemGroup>
 
 </Project>

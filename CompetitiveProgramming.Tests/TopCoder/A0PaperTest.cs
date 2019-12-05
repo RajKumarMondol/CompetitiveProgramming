@@ -1,7 +1,7 @@
-using System;
 using Xunit;
+using CompetitiveProgramming.TopCoder;
 
-namespace TopCoder.Tests
+namespace CompetitiveProgramming.Tests.TopCoder
 {
     public class A0PaperTest
     {

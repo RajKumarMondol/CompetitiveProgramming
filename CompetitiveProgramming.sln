@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopCoder", "TopCoder\TopCoder.csproj", "{26E75F3C-0B50-493D-869A-D02681251381}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompetitiveProgramming", "CompetitiveProgramming\CompetitiveProgramming.csproj", "{26E75F3C-0B50-493D-869A-D02681251381}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopCoder.Tests", "TopCoder.Tests\TopCoder.Tests.csproj", "{DD88FFBB-3A8A-4EB7-A85A-9CE980D2DC73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompetitiveProgramming.Tests", "CompetitiveProgramming.Tests\CompetitiveProgramming.Tests.csproj", "{DD88FFBB-3A8A-4EB7-A85A-9CE980D2DC73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
