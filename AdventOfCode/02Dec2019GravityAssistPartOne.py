@@ -1,4 +1,3 @@
-import math
 
 
 def gravityAssistProgram(intCodes, opcodeIndex=0):

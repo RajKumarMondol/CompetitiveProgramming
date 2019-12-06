@@ -1,4 +1,3 @@
-import math
 
 
 def gravityAssistProgramIdentifyNounAndVerb(intCodes):
