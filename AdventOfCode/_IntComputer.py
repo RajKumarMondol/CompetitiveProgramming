@@ -1,11 +1,5 @@
 import math
-
-
-def assertEqual(x, y):
-    if(x != y):
-        print("FAILED assertEqual : "+str(x)+" != "+str(y))
-    assert x == y
-
+from Common import conditionalPrint, assertEqual
 
 def getParameterMode(number, paramOffset):
     nThDigit = math.pow(10, (paramOffset+1))
@@ -31,10 +25,10 @@ def getValueByParameterMode(computerProgram, opCodeIndex, paramOffset):
 # assertEqual(2, getValueByParameterMode([102, 10, 2], 0, 2))
 
 
-def add(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
+def add(computerProgram,  opcodeIndex):
     firstArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 1)
     secondArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 2)
-    print(f"opcodeIndex : {opcodeIndex}>>add{computerProgram[opcodeIndex:opcodeIndex+4]}\t({firstArgumentValue},{secondArgumentValue})")
+    conditionalPrint(f"opcodeIndex : {opcodeIndex}>>add{computerProgram[opcodeIndex:opcodeIndex+4]}\t({firstArgumentValue},{secondArgumentValue})")
     computerProgram[computerProgram[opcodeIndex+3]] = firstArgumentValue+secondArgumentValue
     return opcodeIndex+4
 
@@ -50,10 +44,10 @@ def add(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
 # assertEqual([1, 3, 2, 5], opcodes)
 
 
-def mul(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
+def mul(computerProgram,  opcodeIndex):
     firstArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 1)
     secondArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 2)
-    print(f"opcodeIndex : {opcodeIndex}>>mul{computerProgram[opcodeIndex:opcodeIndex+4]}\t({firstArgumentValue},{secondArgumentValue})")
+    conditionalPrint(f"opcodeIndex : {opcodeIndex}>>mul{computerProgram[opcodeIndex:opcodeIndex+4]}\t({firstArgumentValue},{secondArgumentValue})")
     computerProgram[computerProgram[opcodeIndex+3]] = firstArgumentValue*secondArgumentValue
     return opcodeIndex+4
 
@@ -69,37 +63,35 @@ def mul(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
 # assertEqual([2, 3, 2, 6], opcodes)
 
 
-def input(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
-    firstArgumentValue = next(inputIterator)
+def takeInput(computerProgram,  opcodeIndex, firstArgumentValue):
     computerProgram[computerProgram[opcodeIndex+1]] = firstArgumentValue
-    print(f"opcodeIndex : {opcodeIndex}>>inp{computerProgram[opcodeIndex:opcodeIndex+2]}\t\t({firstArgumentValue})")
-    # print(f"Input : {computerProgram[computerProgram[opcodeIndex+1]]}")
+    conditionalPrint(f"opcodeIndex : {opcodeIndex}>>inp{computerProgram[opcodeIndex:opcodeIndex+2]}\t\t({firstArgumentValue})")
+    # conditionalPrint(f"Input : {computerProgram[computerProgram[opcodeIndex+1]]}")
     return opcodeIndex+2
 
 
 # opcodes = [3, 1]
-# nextOpcodeIndex = input(opcodes, 5, 0, [])
+# nextOpcodeIndex = takeInput(opcodes, 5, 0, [])
 # assertEqual(2, nextOpcodeIndex)
 # assertEqual([3, 5], opcodes)
 
 
-def output(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
+def giveOutput(computerProgram,  opcodeIndex):
     firstArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 1)
-    print(f"opcodeIndex : {opcodeIndex}>>out{computerProgram[opcodeIndex:opcodeIndex+2]}\t\t({firstArgumentValue})")
-    diagonasticOutput.append(firstArgumentValue)
-    return opcodeIndex+2
+    conditionalPrint(f"opcodeIndex : {opcodeIndex}>>out{computerProgram[opcodeIndex:opcodeIndex+2]}\t\t({firstArgumentValue})")
+    return opcodeIndex+2, firstArgumentValue
 
 
 # diagnosticOutput = []
-# nextOpcodeIndex = output([104, 1], 0, 0, diagnosticOutput)
+# nextOpcodeIndex = giveOutput([104, 1], 0, 0, diagnosticOutput)
 # assertEqual(2, nextOpcodeIndex)
 # assertEqual([1], diagnosticOutput)
 
 
-def jumpIfTrue(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
+def jumpIfTrue(computerProgram,  opcodeIndex):
     firstArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 1)
     secondArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 2)
-    print(f"opcodeIndex : {opcodeIndex}>>jnz{computerProgram[opcodeIndex:opcodeIndex+3]}\t\t({firstArgumentValue},{secondArgumentValue})")
+    conditionalPrint(f"opcodeIndex : {opcodeIndex}>>jnz{computerProgram[opcodeIndex:opcodeIndex+3]}\t\t({firstArgumentValue},{secondArgumentValue})")
     if firstArgumentValue != 0:
         return secondArgumentValue
     return opcodeIndex+3
@@ -109,10 +101,10 @@ def jumpIfTrue(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
 # assertEqual(3, jumpIfTrue([1105, 0, 10], 0, 0, []))
 
 
-def jumpIfFalse(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
+def jumpIfFalse(computerProgram,  opcodeIndex):
     firstArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 1)
     secondArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 2)
-    print(f"opcodeIndex : {opcodeIndex}>>jsz{computerProgram[opcodeIndex:opcodeIndex+3]}\t\t({firstArgumentValue},{secondArgumentValue})")
+    conditionalPrint(f"opcodeIndex : {opcodeIndex}>>jsz{computerProgram[opcodeIndex:opcodeIndex+3]}\t\t({firstArgumentValue},{secondArgumentValue})")
     if firstArgumentValue == 0:
         return secondArgumentValue
     return opcodeIndex+3
@@ -122,10 +114,10 @@ def jumpIfFalse(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
 # assertEqual(3, jumpIfFalse([1106, 1, 10], 0, 0, []))
 
 
-def lessThan(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
+def lessThan(computerProgram,  opcodeIndex):
     firstArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 1)
     secondArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 2)
-    print(f"opcodeIndex : {opcodeIndex}>>lt {computerProgram[opcodeIndex:opcodeIndex+4]}\t({firstArgumentValue},{secondArgumentValue})")
+    conditionalPrint(f"opcodeIndex : {opcodeIndex}>>lt {computerProgram[opcodeIndex:opcodeIndex+4]}\t({firstArgumentValue},{secondArgumentValue})")
     computerProgram[computerProgram[opcodeIndex+3]] = 1 if firstArgumentValue < secondArgumentValue else 0
     return opcodeIndex+4
 
@@ -146,10 +138,10 @@ def lessThan(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
 # assertEqual([7, 1, 2, 1], opcodes)
 
 
-def isEquals(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
+def isEquals(computerProgram,  opcodeIndex):
     firstArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 1)
     secondArgumentValue = getValueByParameterMode(computerProgram, opcodeIndex, 2)
-    print(f"opcodeIndex : {opcodeIndex}>>eql{computerProgram[opcodeIndex:opcodeIndex+4]}\t({firstArgumentValue},{secondArgumentValue})")
+    conditionalPrint(f"opcodeIndex : {opcodeIndex}>>eql{computerProgram[opcodeIndex:opcodeIndex+4]}\t({firstArgumentValue},{secondArgumentValue})")
     computerProgram[computerProgram[opcodeIndex+3]] = 1 if firstArgumentValue == secondArgumentValue else 0
     return opcodeIndex+4
 
@@ -167,8 +159,6 @@ def isEquals(computerProgram, inputIterator, opcodeIndex, diagonasticOutput):
 IntComputerInstructions = {
     1: add,
     2: mul,
-    3: input,
-    4: output,
     5: jumpIfTrue,
     6: jumpIfFalse,
     7: lessThan,
