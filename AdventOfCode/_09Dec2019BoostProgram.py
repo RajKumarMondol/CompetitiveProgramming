@@ -122,23 +122,23 @@ class BoostProgram:
         return result
 
     def runIntComputerForOutput(self):
-        opCode = self.readMemory(self.opcodeIndex) % 100
-        if opCode == 99:
-            self.isHaulted = True
-            conditionalPrint(f"opcodeIndex : {self.opcodeIndex}>>hlt[99]")
-            return "HLT", self.outputSequence
-        elif opCode == 3:
-            if len(self.inputSequence) > self.nextInputIndex:
-                self.opcodeIndex = self.takeInput(self.inputSequence[self.nextInputIndex])
-                self.nextInputIndex += 1
-            else:
-                return "INP"
-        elif opCode == 4:
-            self.opcodeIndex, output = self.giveOutput()
-            self.outputSequence.append(output)
-        elif opCode in self.instructionMap.keys():
-            self.opcodeIndex = self.instructionMap[opCode]()
-        return self.runIntComputerForOutput()
+        while True:
+            opCode = self.readMemory(self.opcodeIndex) % 100
+            if opCode == 99:
+                self.isHaulted = True
+                conditionalPrint(f"opcodeIndex : {self.opcodeIndex}>>hlt[99]")
+                return "HLT", self.outputSequence
+            elif opCode == 3:
+                if len(self.inputSequence) > self.nextInputIndex:
+                    self.opcodeIndex = self.takeInput(self.inputSequence[self.nextInputIndex])
+                    self.nextInputIndex += 1
+                else:
+                    return "INP"
+            elif opCode == 4:
+                self.opcodeIndex, output = self.giveOutput()
+                self.outputSequence.append(output)
+            elif opCode in self.instructionMap.keys():
+                self.opcodeIndex = self.instructionMap[opCode]()
 
 
 def generateAmplifierPhaseSettings(start, end):
